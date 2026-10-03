@@ -885,18 +885,19 @@
     </div><button class="work-arrow work-next" type="button" aria-label="Siguiente proyecto">→</button></div>
     <div class="work-dots"><button class="work-dot active" data-index="0" aria-label="Alas del Calabozo"></button><button class="work-dot" data-index="1" aria-label="Los Ojos del Planeta"></button></div>
   </div>
-  <div class="work-group software-group"><div class="work-group-head"><span class="work-group-title" id="softwareGroupTitle">02 — DESARROLLO DE SOFTWARE</span><span class="work-group-note" id="softwareGroupNote">1 proyecto</span></div>
-    <div class="work-carousel"><button class="work-arrow work-prev-flowdesk" type="button" aria-label="Proyecto anterior">←</button><div class="work-track">
-      <article class="work-slide active" data-project="flowdesk" tabindex="0" role="button" aria-label="Ver Study Case de FlowDesk"><div class="work-visual"><div class="work-media-image"><img src="imagenes/flowdesk-portada.jpg" alt="FlowDesk — plataforma de gestión de proyectos y QA"><div class="media-shade"></div><div class="cover-label"><span class="mono">01 / 01</span></div></div><div class="work-overlay"><span class="mono" id="workFlowdeskType">FULL-STACK SOFTWARE · QA</span><span id="workViewFlowdesk">VER PROYECTO →</span></div></div><div class="work-summary"><div><div class="work-kicker mono" id="workFlowdeskKicker">03 — FULL-STACK / PROJECT MANAGEMENT / QA</div><p id="workFlowdeskDesc">Plataforma full-stack para equipos pequeños que centraliza tareas, bugs, casos de prueba y métricas de calidad en un solo lugar.</p></div><div class="work-tags"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>CI/CD</span><span>QA</span></div></div></article>
-    </div><button class="work-arrow work-next-flowdesk" type="button" aria-label="Siguiente proyecto">→</button></div>
-    <div class="work-dots"><button class="work-dot active" aria-label="FlowDesk"></button></div>
+  <div class="work-group software-group"><div class="work-group-head"><span class="work-group-title" id="softwareGroupTitle">02 — DESARROLLO DE SOFTWARE</span><span class="work-group-note" id="softwareGroupNote">2 proyectos</span></div>
+    <div class="work-carousel"><button class="work-arrow work-prev-software" type="button" aria-label="Proyecto anterior">←</button><div class="work-track">
+      <article class="work-slide active" data-project="flowdesk" tabindex="0" role="button" aria-label="Ver Study Case de FlowDesk"><div class="work-visual"><div class="work-media-image"><img src="imagenes/flowdesk-portada.jpg" alt="FlowDesk — plataforma de gestión de proyectos y QA"><div class="media-shade"></div><div class="cover-label"><span class="mono">01 / 02</span></div></div><div class="work-overlay"><span class="mono" id="workFlowdeskType">FULL-STACK SOFTWARE · QA</span><span id="workViewFlowdesk">VER PROYECTO →</span></div></div><div class="work-summary"><div><div class="work-kicker mono" id="workFlowdeskKicker">03 — FULL-STACK / PROJECT MANAGEMENT / QA</div><p id="workFlowdeskDesc">Plataforma full-stack para equipos pequeños que centraliza tareas, bugs, casos de prueba y métricas de calidad en un solo lugar.</p></div><div class="work-tags"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>CI/CD</span><span>QA</span></div></div></article>
+      <article class="work-slide" data-project="gymtrack" tabindex="0" role="button" aria-label="Ver Study Case de GymTrack"><div class="work-visual"><div class="work-media-image"><img src="imagenes/gymtrack-portada.jpg" alt="GymTrack — aplicación móvil de fitness"><div class="media-shade"></div><div class="cover-label"><span class="mono">02 / 02</span></div></div><div class="work-overlay"><span class="mono" id="workGymtrackType">FULL-STACK · MOBILE · FITNESS</span><span id="workViewGymtrack">VER PROYECTO →</span></div></div><div class="work-summary"><div><div class="work-kicker mono" id="workGymtrackKicker"><span id="gymtrackKicker">04 — MOBILE / BACKEND / FULL-STACK</span></div><p id="workGymtrackDesc"><span id="gymtrackCardDescription">Aplicación móvil de fitness full-stack para gestionar entrenamientos, progreso, rutinas y objetivos con backend propio y base de datos real.</span></p></div><div class="work-tags"><span>React Native</span><span>Expo</span><span>FastAPI</span><span>PostgreSQL</span><span>TypeScript</span><span>JWT</span></div></div></article>
+    </div><button class="work-arrow work-next-software" type="button" aria-label="Siguiente proyecto">→</button></div>
+    <div class="work-dots"><button class="work-dot active software-dot" data-index="0" aria-label="FlowDesk"></button><button class="work-dot software-dot" data-index="1" aria-label="GymTrack"></button></div>
   </div>
 </section>
 
 <div class="project-modal" id="projectModal" aria-hidden="true">
   <div class="modal-backdrop" data-close-modal></div>
   <div class="modal-panel" role="dialog" aria-modal="true">
-    <button class="modal-close" type="button" data-close-modal aria-label="Cerrar" id="modalClose">×</button>
+    <button class="modal-close" type="button" data-close-modal id="modalClose">×</button>
     <div class="modal-hero">
       <img id="modalHeroImage" src="imagenes/alas-portada.jpg" alt="Alas del Calabozo — portada">
       <div class="modal-hero-shade"></div>
@@ -912,6 +913,7 @@
         </div>
         <div class="modal-actions">
           <a id="modalLink" class="btn btn-solid" href="https://ingenmultimedia.github.io/AlasdelCalabozo/index.html" target="_blank" rel="noopener"><span id="modalVisitProject">Visitar proyecto ↗</span></a>
+          <a id="modalGithubLink" class="btn btn-outline" href="#" target="_blank" rel="noopener" hidden><span id="modalGithub">GitHub ↗</span></a>
         </div>
       </div>
 
@@ -995,7 +997,7 @@
 
 <section id="contacto" class="divider">
   <div class="contact-wrap">
-    <div class="contact-kicker" id="contactKicker">CONTACT / 04</div>
+    <div class="contact-kicker" id="contactKicker">CONTACTAME</div>
     <div class="contact-title" id="contactTitle">¿Tienes una idea? Hagámosla real.</div>
     <p class="contact-lead" id="contactLead">Desarrollo experiencias digitales, software y proyectos interactivos donde la tecnología y el diseño trabajan juntos.</p>
     <a href="mailto:carlosdoncel2004@gmail.com?subject=Proyecto%20-%20Contacto%20desde%20mi%20portfolio" class="contact-cta" id="contactCta" aria-label="Enviar correo a Carlos Daniel Doncel">Hablemos <span>→</span></a>
@@ -1055,13 +1057,16 @@
     ctaWork: { es:'Ver trabajo', en:'View work' },
     ctaContact: { es:'Contacto', en:'Contact' },
     modalGithub: { es:'Ver en GitHub ↗', en:'View on GitHub ↗' },
+    modalDownloadApk: { es:'Descargar APK ↗', en:'Download APK ↗' },
+    gymtrackKicker: { es:'04 — MOBILE / BACKEND / FULL-STACK', en:'04 — MOBILE / BACKEND / FULL-STACK' },
+    gymtrackCardDescription: { es:'Aplicación móvil de fitness full-stack para gestionar entrenamientos, progreso, rutinas y objetivos con backend propio y base de datos real.', en:'Full-stack fitness mobile application for managing workouts, progress, routines, and goals with its own backend and real database.' },
 
     trabajoTitle: { es:'Proyectos Destacados', en:'Featured Projects' },
     countLabel: { es:'', en:'' },
      immersiveGroupTitle: { es:'01 — VIDEOJUEGOS · INTERACCIÓN · REALIDAD VIRTUAL', en:'01 — VIDEO GAMES · INTERACTION · VIRTUAL REALITY' },
      immersiveGroupNote: { es:'2 proyectos', en:'2 projects' },
      softwareGroupTitle: { es:'02 — DESARROLLO DE SOFTWARE', en:'02 — SOFTWARE DEVELOPMENT' },
-     softwareGroupNote: { es:'1 proyecto', en:'1 project' },
+     softwareGroupNote: { es:'2 proyectos', en:'2 projects' },
      flowdeskKicker: { es:'03 — FULL-STACK / GESTIÓN DE PROYECTOS / QA', en:'03 — FULL-STACK / PROJECT MANAGEMENT / QA' },
      flowdeskTitle: { es:'Where development meets quality.', en:'Where development meets quality.' },
      flowdeskDesc: { es:'Plataforma full-stack para equipos pequeños que centraliza tareas, bugs, casos de prueba y métricas de calidad en un solo lugar.', en:'Full-stack platform for small teams that centralizes tasks, bugs, test cases, and quality metrics in one place.' },
@@ -1102,7 +1107,7 @@
     codeKey3: { es:'"ux_ui_y_web"', en:'"ux_ui_and_web"' },
     codeKey4: { es:'"idiomas"', en:'"languages"' },
 
-    contactKicker: { es:'CONTACTO / 04', en:'CONTACT / 04' },
+    contactKicker: { es:'CONTACTAME', en:'CONTACT ME' },
     contactTitle: { es:'¿Tienes una idea? Hagámosla real.', en:'Have an idea? Let’s build it.' },
     contactLead: { es:'Estoy disponible para desarrollar software, websites y experiencias interactivas, además de UX/UI y QA para mejorar la usabilidad, funcionalidad y calidad de un producto.', en:'I’m available for software, websites, and interactive experiences, as well as UX/UI and QA to improve a product’s usability, functionality, and quality.' },
     contactCta: { es:'Hablemos', en:'Let’s talk' },
@@ -1125,7 +1130,6 @@
     factMultiplayer: { es:'MULTIJUGADOR', en:'MULTIPLAYER' },
     factData: { es:'DATOS', en:'DATA' },
     modalVisitProject: { es:'Visitar proyecto ↗', en:'Visit project ↗' },
-    modalClose: { es:'Cerrar', en:'Close' },
     modalExperienceLabel: { es:'01 — EXPERIENCIA', en:'01 — EXPERIENCE' },
     modalExperienceTitle: { es:'Explora → Enfrenta → Descubre', en:'Explore → Face → Discover' },
     modalStep1Title: { es:'Explora', en:'Explore' },
@@ -1195,7 +1199,6 @@
     const prev=document.getElementById('galleryPrev'), next=document.getElementById('galleryNext'), close=document.getElementById('modalClose');
     if(prev) prev.setAttribute('aria-label', translations.galleryPrev[lang]);
     if(next) next.setAttribute('aria-label', translations.galleryNext[lang]);
-    if(close) close.setAttribute('aria-label', translations.modalClose[lang]);
     if(terminalLanguageUpdater) terminalLanguageUpdater(lang);
     if(window.applyCurrentProjectLanguage) window.applyCurrentProjectLanguage(lang);
   }
@@ -1401,8 +1404,11 @@
   // ===== selected work carousel + translated case study =====
   const slides=[...document.querySelectorAll('.immersive-group .work-slide')];
   const dots=[...document.querySelectorAll('.immersive-group .work-dot')];
+  const softwareSlides=[...document.querySelectorAll('.software-group .work-slide')];
+  const softwareDots=[...document.querySelectorAll('.software-group .software-dot')];
   const modal=document.getElementById('projectModal');
   let workIndex=0;
+  let softwareIndex=0;
   let activeProjectKey='alas';
 
   const projectData={
@@ -1438,7 +1444,8 @@
       },
       link:'https://www.behance.net/gallery/230275761/Los-ojos-del-planeta', hero:'imagenes/ojos-portada.jpg', total:4
     },
-    flowdesk:{number:'01 / 01',title:'FlowDesk',category:{es:'DESARROLLO DE SOFTWARE · FULL-STACK · QA',en:'SOFTWARE DEVELOPMENT · FULL-STACK · QA'},description:{es:'Plataforma full-stack de gestión de proyectos y QA que centraliza tareas, bugs, casos de prueba y métricas de calidad para equipos pequeños de desarrollo.',en:'Full-stack project and QA management platform that centralizes tasks, bugs, test cases, and quality metrics for small development teams.'},role:{es:'Full-Stack Developer · Backend · Frontend · QA · DevOps',en:'Full-Stack Developer · Backend · Frontend · QA · DevOps'},link:'https://flow-desk-ochre.vercel.app',github:'https://github.com/CarlosDoncel/FlowDesk',hero:'imagenes/flowdesk-portada.jpg',total:4}
+    flowdesk:{number:'01 / 02',title:'FlowDesk',category:{es:'DESARROLLO DE SOFTWARE · FULL-STACK · QA',en:'SOFTWARE DEVELOPMENT · FULL-STACK · QA'},description:{es:'Plataforma full-stack de gestión de proyectos y QA que centraliza tareas, bugs, casos de prueba y métricas de calidad para equipos pequeños de desarrollo.',en:'Full-stack project and QA management platform that centralizes tasks, bugs, test cases, and quality metrics for small development teams.'},role:{es:'Full-Stack Developer · Backend · Frontend · QA · DevOps',en:'Full-Stack Developer · Backend · Frontend · QA · DevOps'},link:'https://flow-desk-ochre.vercel.app',github:'https://github.com/CarlosDoncel/FlowDesk',hero:'imagenes/flowdesk-portada.jpg',total:4},
+    gymtrack:{number:'02 / 02',title:'GymTrack',category:{es:'DESARROLLO DE SOFTWARE · FULL-STACK · MOBILE',en:'SOFTWARE DEVELOPMENT · FULL-STACK · MOBILE'},description:{es:'Aplicación móvil de fitness full-stack para gestionar entrenamientos, progreso, rutinas y objetivos, con backend propio, base de datos real y una app móvil nativa.',en:'Full-stack fitness mobile application for managing workouts, progress, routines, and goals with its own backend and real database.'},role:{es:'Full-Stack Developer · Mobile · Backend · Database · DevOps',en:'Full-Stack Developer · Mobile · Backend · Database · DevOps'},link:'https://github.com/CarlosDoncel/GymTrack',hero:'imagenes/gymtrack-portada.jpg',total:4}
   };
 
   function showWork(i){
@@ -1469,12 +1476,19 @@
       {src:'imagenes/flowdesk-qa.jpg',alt:'FlowDesk — QA y bug tracker',caption:{es:'Gestión de bugs y casos de prueba',en:'Bug tracking and test case management'}},
       {src:'imagenes/flowdesk-analytics.jpg',alt:'FlowDesk — analytics',caption:{es:'Métricas de calidad y Project Health',en:'Quality metrics and Project Health'}},
       {src:'imagenes/flowdesk-portada.jpg',alt:'FlowDesk — portada',caption:{es:'Identidad visual de la plataforma',en:'Platform visual identity'}}
+    ],
+    gymtrack:[
+      {src:'imagenes/gymtrack-dashboard.jpg',alt:'GymTrack — dashboard',caption:{es:'Dashboard y seguimiento del entrenamiento',en:'Workout dashboard and tracking'}},
+      {src:'imagenes/gymtrack-workout.jpg',alt:'GymTrack — sesión de entrenamiento',caption:{es:'Sesión de entrenamiento y temporizador de descanso',en:'Workout session and rest timer'}},
+      {src:'imagenes/gymtrack-progress.jpg',alt:'GymTrack — progreso',caption:{es:'PRs, 1RM y volumen de entrenamiento',en:'PRs, 1RM, and training volume'}},
+      {src:'imagenes/gymtrack-social.jpg',alt:'GymTrack — funciones sociales',caption:{es:'Amigos, insignias y ranking',en:'Friends, badges, and leaderboard'}}
     ]
   };
   const projectVideos={
     alas:'imagenes/alas-trailer.mp4',
     ojos:'imagenes/ojos-trailer.mp4',
-    flowdesk:'imagenes/flowdesk-trailer.mp4'
+    flowdesk:'imagenes/flowdesk-trailer.mp4',
+    gymtrack:'imagenes/gymtrack-trailer.mp4'
   };
   let galleryIndex=0;
 
@@ -1513,7 +1527,8 @@
     const factsByProject={
       alas:{labels:{es:['MOTOR','JUGADORES','MAPA','MULTIJUGADOR','DATOS'],en:['ENGINE','PLAYERS','MAP','MULTIPLAYER','DATA']},values:{es:['Unity','Hasta 3','Mapbox','Photon PUN 2','Firebase + SQLite'],en:['Unity','Up to 3','Mapbox','Photon PUN 2','Firebase + SQLite']}},
       ojos:{labels:{es:['MOTOR','PLATAFORMA','EQUIPO','ENFOQUE','FORMATO'],en:['ENGINE','PLATFORM','TEAM','FOCUS','FORMAT']},values:{es:['Unity','Meta Quest','3 personas','VR · interacción','Experiencia educativa'],en:['Unity','Meta Quest','3 people','VR · interaction','Educational experience']}},
-      flowdesk:{labels:{es:['FRONTEND','BACKEND','BASE DE DATOS','TESTS','DEPLOY'],en:['FRONTEND','BACKEND','DATABASE','TESTS','DEPLOY']},values:{es:['React + TypeScript','FastAPI','PostgreSQL','54 automatizados','Vercel + Render'],en:['React + TypeScript','FastAPI','PostgreSQL','54 automated','Vercel + Render']}}
+      flowdesk:{labels:{es:['FRONTEND','BACKEND','BASE DE DATOS','TESTS','DEPLOY'],en:['FRONTEND','BACKEND','DATABASE','TESTS','DEPLOY']},values:{es:['React + TypeScript','FastAPI','PostgreSQL','54 automatizados','Vercel + Render'],en:['React + TypeScript','FastAPI','PostgreSQL','54 automated','Vercel + Render']}},
+      gymtrack:{labels:{es:['MÓVIL','BACKEND','BASE DE DATOS','AUTENTICACIÓN','DEPLOY'],en:['MOBILE','BACKEND','DATABASE','AUTHENTICATION','DEPLOY']},values:{es:['React Native + Expo','Python + FastAPI','PostgreSQL + Neon','JWT + bcrypt','Render + EAS Build'],en:['React Native + Expo','Python + FastAPI','PostgreSQL + Neon','JWT + bcrypt','Render + EAS Build']}}
     };
     const facts=factsByProject[activeProjectKey] || factsByProject.alas;
     const labelIds=['factMotor','factPlayers','factMap','factMultiplayer','factData'],valueIds=['factMotorValue','factPlayersValue','factMapValue','factMultiplayerValue','factDataValue'];
@@ -1524,20 +1539,33 @@
   function applyCurrentProjectLanguage(lang){
     const p=projectData[activeProjectKey];
     if(!p)return;
+    const githubLink=document.getElementById('modalGithubLink');
+    if(githubLink){
+      const hasGithub=activeProjectKey==='flowdesk' && !!p.github;
+      githubLink.hidden=!hasGithub;
+      if(hasGithub){
+        githubLink.href=p.github;
+        githubLink.querySelector('#modalGithub').textContent=translations.modalGithub[lang];
+      }else{
+        githubLink.removeAttribute('href');
+      }
+    }
     document.getElementById('modalNumber').textContent=p.number;
     document.getElementById('modalHeading').textContent=p.title;
     document.getElementById('modalCategory').textContent=p.category[lang];
     document.getElementById('modalDescription').textContent=p.description[lang];
     document.getElementById('modalRole').textContent=p.role[lang];
     document.getElementById('modalLink').href=p.link;
-    document.getElementById('modalLink').querySelector('#modalVisitProject').textContent=translations.modalVisitProject[lang];
+    document.getElementById('modalLink').querySelector('#modalVisitProject').textContent=activeProjectKey==='gymtrack' ? translations.modalDownloadApk[lang] : translations.modalVisitProject[lang];
     document.getElementById('modalHeroImage').src=p.hero;
     document.getElementById('modalHeroImage').alt=p.title+' — '+(lang==='es'?'portada del proyecto':'project cover');
 
     const details={
       alas:{es:{experienceLabel:'01 — EXPERIENCIA',experienceTitle:'Explora → Enfrenta → Descubre',s1:'Explora',d1:'Recorre el campus usando el mapa y encuentra puntos de interés.',s2:'Enfrenta',d2:'Supera combates contra criaturas para avanzar en la misión.',s3:'Descubre',d3:'Recolecta pistas y aprende sobre las aves representadas.',stack:'Unity · C# · Mapbox · Photon PUN 2 · Firebase · SQLite · PlayerPrefs',contribution:'Gameplay, lógica de exploración y combate, integración de geolocalización, sistemas multijugador y gestión de datos.'},en:{experienceLabel:'01 — EXPERIENCE',experienceTitle:'Explore → Face → Discover',s1:'Explore',d1:'Explore the campus using the map and find points of interest.',s2:'Face',d2:'Defeat creatures in combat to advance the mission.',s3:'Discover',d3:'Collect clues and learn about the birds featured in the game.',stack:'Unity · C# · Mapbox · Photon PUN 2 · Firebase · SQLite · PlayerPrefs',contribution:'Gameplay, exploration and combat logic, geolocation integration, multiplayer systems, and data management.'}},
       ojos:{es:{experienceLabel:'01 — EXPERIENCIA',experienceTitle:'Vuela → Interactúa → Aprende',s1:'Vuela',d1:'Explora el entorno desde la escala de una abeja y recorre la ruta de la experiencia.',s2:'Interactúa',d2:'Usa movimientos del torso y gestos de aleteo para experimentar el vuelo en VR.',s3:'Aprende',d3:'Percibe cambios visuales y sonoros que representan las amenazas ecológicas.',stack:'Unity · C# · Meta Quest · VR',contribution:'Movimiento del jugador, interacciones inmersivas, UX/UI, optimización para VR y aportes a la narrativa dentro de un equipo de tres personas.'},en:{experienceLabel:'01 — EXPERIENCE',experienceTitle:'Fly → Interact → Learn',s1:'Fly',d1:'Explore the environment at a bee’s scale and follow the experience route.',s2:'Interact',d2:'Use torso movement and flapping gestures to experience flight in VR.',s3:'Learn',d3:'Perceive visual and sound changes that represent ecological threats.',stack:'Unity · C# · Meta Quest · VR',contribution:'Player movement, immersive interactions, UX/UI, VR optimization, and narrative contributions within a three-person team.'}},
-      flowdesk:{es:{experienceLabel:'01 — EXPERIENCIA',experienceTitle:'Planifica → Desarrolla → Verifica',s1:'Planifica',d1:'Organiza proyectos, miembros, tareas y responsabilidades desde un solo espacio.',s2:'Desarrolla',d2:'Gestiona el trabajo con Kanban, seguimiento de bugs y estados claros de desarrollo.',s3:'Verifica',d3:'Ejecuta casos de prueba, revisa resultados y usa métricas para evaluar la salud del proyecto.',stack:'React 18 · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · React Query · Tailwind CSS',contribution:'Arquitectura full-stack, autenticación JWT, RBAC, gestión de proyectos, bug tracking, Testing Center, analytics, Project Health, notificaciones y automatización de pruebas/CI.'},en:{experienceLabel:'01 — EXPERIENCE',experienceTitle:'Plan → Develop → Verify',s1:'Plan',d1:'Organize projects, members, tasks, and responsibilities from one workspace.',s2:'Develop',d2:'Manage work through Kanban, bug tracking, and clear development states.',s3:'Verify',d3:'Run test cases, review results, and use metrics to evaluate project health.',stack:'React 18 · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · React Query · Tailwind CSS',contribution:'Full-stack architecture, JWT authentication, RBAC, project management, bug tracking, Testing Center, analytics, Project Health, notifications, and automated testing/CI.'}}}[activeProjectKey][lang];
+      flowdesk:{es:{experienceLabel:'01 — EXPERIENCIA',experienceTitle:'Planifica → Desarrolla → Verifica',s1:'Planifica',d1:'Organiza proyectos, miembros, tareas y responsabilidades desde un solo espacio.',s2:'Desarrolla',d2:'Gestiona el trabajo con Kanban, seguimiento de bugs y estados claros de desarrollo.',s3:'Verifica',d3:'Ejecuta casos de prueba, revisa resultados y usa métricas para evaluar la salud del proyecto.',stack:'React 18 · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · React Query · Tailwind CSS',contribution:'Arquitectura full-stack, autenticación JWT, RBAC, gestión de proyectos, bug tracking, Testing Center, analytics, Project Health, notificaciones y automatización de pruebas/CI.'},en:{experienceLabel:'01 — EXPERIENCE',experienceTitle:'Plan → Develop → Verify',s1:'Plan',d1:'Organize projects, members, tasks, and responsibilities from one workspace.',s2:'Develop',d2:'Manage work through Kanban, bug tracking, and clear development states.',s3:'Verify',d3:'Run test cases, review results, and use metrics to evaluate project health.',stack:'React 18 · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · React Query · Tailwind CSS',contribution:'Full-stack architecture, JWT authentication, RBAC, project management, bug tracking, Testing Center, analytics, Project Health, notifications, and automated testing/CI.'}},
+      gymtrack:{es:{experienceLabel:'01 — EXPERIENCIA',experienceTitle:'Planifica → Entrena → Progresa',s1:'Planifica',d1:'Crea rutinas personalizadas, asigna ejercicios por día y utiliza plantillas populares como 5x5 y PPL.',s2:'Entrena',d2:'Registra sesiones en vivo con temporizador de descanso y almacenamiento preparado para trabajar con conectividad limitada.',s3:'Progresa',d3:'Consulta PRs, 1RM, volumen semanal, rachas e insignias mientras participas en funciones sociales y ranking.',stack:'React Native · Expo · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · TanStack Query · Axios · Expo Router',contribution:'Desarrollo full-stack de la app móvil y backend, autenticación JWT, rutinas, ejercicios, sesiones de entrenamiento, progreso, gamificación, funciones sociales, nutrición, notificaciones y soporte offline-friendly.'},en:{experienceLabel:'01 — EXPERIENCE',experienceTitle:'Plan → Train → Progress',s1:'Plan',d1:'Create custom routines, assign exercises by day, and use popular templates such as 5x5 and PPL.',s2:'Train',d2:'Log live workout sessions with a rest timer and storage designed to work with limited connectivity.',s3:'Progress',d3:'Track PRs, 1RM, weekly volume, streaks, and badges while using social and leaderboard features.',stack:'React Native · Expo · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · TanStack Query · Axios · Expo Router',contribution:'Full-stack development of the mobile app and backend, JWT authentication, routines, exercises, workout sessions, progress tracking, gamification, social features, nutrition, notifications, and offline-friendly support.'}}
+    }[activeProjectKey][lang];
 
     document.getElementById('modalExperienceLabel').textContent=details.experienceLabel;
     document.getElementById('modalExperienceTitle').textContent=details.experienceTitle;
@@ -1558,10 +1586,14 @@
 
   window.applyCurrentProjectLanguage=applyCurrentProjectLanguage;
 
+  function showSoftware(i){ softwareIndex=(i+softwareSlides.length)%softwareSlides.length; softwareSlides.forEach((x,n)=>x.classList.toggle('active',n===softwareIndex)); softwareDots.forEach((x,n)=>x.classList.toggle('active',n===softwareIndex)); }
+
   function openProject(key){
     activeProjectKey=key;
     const idx=slides.findIndex(s=>s.dataset.project===key);
     if(idx>=0) workIndex=idx;
+    const si=softwareSlides.findIndex(s=>s.dataset.project===key);
+    if(si>=0) showSoftware(si);
     const p=projectData[key]; if(!p)return;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
@@ -1576,22 +1608,22 @@
   }
 
   slides.forEach(s=>s.addEventListener('click',()=>openProject(s.dataset.project)));
-  const flowdeskSlide=document.querySelector('.software-group .work-slide');
-  flowdeskSlide?.addEventListener('click',()=>openProject('flowdesk'));
-  flowdeskSlide?.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject('flowdesk');}});
-  document.querySelector('.work-prev-flowdesk')?.addEventListener('click',()=>openProject('flowdesk'));
-  document.querySelector('.work-next-flowdesk')?.addEventListener('click',()=>openProject('flowdesk'));
+  softwareSlides.forEach(s=>{s.addEventListener('click',()=>openProject(s.dataset.project));s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openProject(s.dataset.project);}});});
+  document.querySelector('.work-prev-software')?.addEventListener('click',()=>showSoftware(softwareIndex-1));
+  document.querySelector('.work-next-software')?.addEventListener('click',()=>showSoftware(softwareIndex+1));
+  softwareDots.forEach(d=>d.addEventListener('click',()=>showSoftware(+d.dataset.index)));
   document.querySelectorAll('[data-close-modal]').forEach(e=>e.addEventListener('click',closeProject));
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape'&&modal.classList.contains('open'))closeProject();
-    if(e.key==='ArrowLeft'&&modal.classList.contains('open'))showWork(workIndex-1);
-    if(e.key==='ArrowRight'&&modal.classList.contains('open'))showWork(workIndex+1);
+    if(e.key==='ArrowLeft'&&modal.classList.contains('open')){if(softwareSlides.some(x=>x.dataset.project===activeProjectKey))showSoftware(softwareIndex-1);else showWork(workIndex-1);}
+    if(e.key==='ArrowRight'&&modal.classList.contains('open')){if(softwareSlides.some(x=>x.dataset.project===activeProjectKey))showSoftware(softwareIndex+1);else showWork(workIndex+1);}
   });
 
   document.getElementById('galleryPrev')?.addEventListener('click',()=>moveGallery(-1));
   document.getElementById('galleryNext')?.addEventListener('click',()=>moveGallery(1));
 
   showWork(0);
+  showSoftware(0);
 
 </script>
 
