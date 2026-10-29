@@ -1,0 +1,185 @@
+---
+import T from './T.astro';
+import HeroStage from './HeroStage.astro';
+
+const steps = [
+  { es: 'Diseño', en: 'Design' },
+  { es: 'Desarrollo', en: 'Development' },
+  { es: 'Calidad', en: 'Quality' },
+];
+import {
+  siUnity, siDotnet, siReact, siTypescript, siPython, siPostgresql, siFirebase, siFastapi, siFigma,
+  siGithub, siPostman, siJira, siMeta, siAutodesk, siMapbox, siMongodb, siSelenium,
+} from 'simple-icons';
+
+const raw = [
+  ['Unity', siUnity], ['.NET / C#', siDotnet], ['React', siReact], ['TypeScript', siTypescript], ['Python', siPython], ['PostgreSQL', siPostgresql],
+  ['Firebase', siFirebase], ['FastAPI', siFastapi], ['Figma', siFigma], ['Meta Quest', siMeta], ['Maya', siAutodesk], ['GitHub', siGithub],
+  ['Postman', siPostman], ['Selenium', siSelenium], ['Jira', siJira], ['MongoDB', siMongodb], ['Mapbox', siMapbox],
+] as const;
+// brand color on hover; very light brand colors fall back to ink so they stay visible on cream
+const lum = (hex: string) => { const n = parseInt(hex, 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255; };
+const tech = raw.map(([name, ic]) => ({ name, path: ic.path, color: lum(ic.hex) > 0.8 ? '#1a1a1a' : `#${ic.hex}` }));
+---
+
+<section id="hero" class="hero-glow relative overflow-hidden">
+  <div class="mx-auto max-w-[1240px] px-[6vw] pb-16 pt-11 sm:pt-[52px]">
+    <div class="grid gap-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-start lg:gap-20">
+      <div class="left-col">
+        <div class="mb-5 inline-flex items-center gap-2.5 rounded-full border border-line bg-paper/80 py-1.5 pl-3 pr-4 font-mono text-[11px] uppercase tracking-[0.08em] backdrop-blur">
+          <span class="relative flex size-2">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-accent"></span>
+          </span>
+          <T es="Disponible para proyectos" en="Available for projects" />
+        </div>
+
+        <div class="eyebrow mb-3">
+          <T es="Ingeniero Multimedia — Bogotá" en="Multimedia Engineer — Bogotá" />
+          <span aria-hidden="true"> · </span><time id="bogotaTime" class="tabular-nums" title="America/Bogota">--:--</time>
+        </div>
+
+        <h1 class="font-display text-[clamp(2.2rem,min(3.9vw,6.2vh),3.4rem)] font-bold leading-[0.98] tracking-[-0.035em]">
+          <T es="Construyo" en="I build" />
+          <button
+            type="button"
+            id="cycleWord"
+            class="block whitespace-nowrap py-1 text-left font-display font-bold text-accent underline decoration-[4px] underline-offset-[8px] transition-opacity duration-200"
+            aria-label="Cambiar palabra"
+            data-words-es="software|mundos virtuales|UX/UI|QA / testing|videojuegos|websites"
+            data-words-en="software|virtual worlds|UX/UI|QA / testing|video games|websites"
+          >software</button>
+          <T es="con atención a cada detalle." en="with attention to every detail." />
+        </h1>
+
+        <p class="mt-5 max-w-[52ch] text-[clamp(1.05rem,1.5vw,1.2rem)] text-dim">
+          <T
+            es="Que funcione. Que se entienda. Que se disfrute."
+            en="Make it work. Make it clear. Make it enjoyable."
+          />
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-3.5">
+          <a href="#trabajo" class="btn btn-solid px-7 py-4"><T es="Ver trabajo" en="View work" /><span aria-hidden="true">→</span></a>
+          <a href="#contacto" class="btn btn-outline px-7 py-4"><T es="Contacto" en="Contact" /></a>
+        </div>
+      </div>
+
+      <div class="stage-wrap mx-auto w-full max-w-[560px] lg:max-w-none lg:translate-x-8">
+        <HeroStage />
+      </div>
+    </div>
+
+    <ol class="flow mx-auto mt-14 grid max-w-[820px] grid-cols-3" aria-label="Diseño, Desarrollo, Calidad">
+      {steps.map((st, i) => (
+        <li class="step group relative text-center" tabindex="0">
+          <span class="node mx-auto" style={`--n:${i}`}>{i + 1}</span>
+          {i < steps.length - 1 && <span class="seg"><i style={`--n:${i}`}></i></span>}
+          <h3 class="mt-4 font-display text-[clamp(1.05rem,1.6vw,1.3rem)] font-semibold leading-tight tracking-tight transition-colors group-hover:text-accent group-focus-visible:text-accent"><T es={st.es} en={st.en} /></h3>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <!-- tech marquee: logos, grey until hovered -->
+  <div class="marquee logos overflow-hidden border-y border-line py-5" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1].map(() => (
+        <ul class="flex shrink-0 items-center">
+          {tech.map((t) => (
+            <li class="logo" style={`--c:${t.color}`}>
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" role="img"><path d={t.path} /></svg>
+              <span>{t.name}</span>
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .logos { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logos .marquee-track { animation-duration: 75s; }
+  .logo { display: flex; align-items: center; gap: 0.6rem; padding: 0 1.7rem; color: rgb(26 26 26 / 0.4); transition: color 0.25s; }
+  .logo:hover { color: var(--c); }
+  .logo span { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; white-space: nowrap; }
+  @media (min-width: 1024px) {
+    .left-col { padding-top: clamp(0px, calc((100svh - 650px) / 4), 32px); }
+    .stage-wrap { width: 100%; max-width: max(380px, calc((100svh - 385px) / 0.75)); }
+  }
+  .node { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 999px; border: 1.5px solid var(--color-accent); background: var(--color-accent); color: #fff; font: 500 0.75rem var(--font-mono); transition: transform 0.25s; }
+  .seg { position: absolute; top: 1rem; left: calc(50% + 1.5rem); width: calc(100% - 3rem); height: 2px; overflow: hidden; background: var(--color-line); }
+  .seg i { position: absolute; inset: 0; background: var(--color-accent); transform-origin: left; }
+  .step { outline: none; cursor: default; }
+  .step:hover .node, .step:focus-visible .node { transform: scale(1.12) translateY(-2px); }
+
+  /* before it scrolls into view: empty. When .go is added it plays once and stays complete */
+  .flow:not(.go) .seg i { transform: scaleX(0); }
+  .flow:not(.go) .node { background: var(--color-paper); border-color: var(--color-ink); color: var(--color-ink); }
+  .flow.go .seg i { animation: fill 0.7s ease-out backwards; animation-delay: calc(var(--n) * 0.7s); }
+  .flow.go .node { animation: light 0.35s ease-out backwards; animation-delay: calc(var(--n) * 0.7s); }
+  @keyframes fill { from { transform: scaleX(0); } }
+  @keyframes light { from { background: var(--color-paper); border-color: var(--color-ink); color: var(--color-ink); } }
+</style>
+
+<script>
+  import { initStage } from '../scripts/stage';
+
+  const cycle = document.getElementById('cycleWord') as HTMLButtonElement | null;
+  let wi = 0;
+  let engaged = false;
+  let timer = 0;
+  const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'es');
+  const words = () => (cycle?.dataset[lang() === 'en' ? 'wordsEn' : 'wordsEs'] ?? '').split('|');
+
+  function goTo(i: number) {
+    if (!cycle) return;
+    wi = (i + words().length) % words().length;
+    cycle.style.opacity = '0';
+    setTimeout(() => {
+      cycle.textContent = words()[wi];
+      cycle.style.opacity = '1';
+    }, 160);
+    document.dispatchEvent(new CustomEvent('scene', { detail: wi }));
+  }
+  function restart() {
+    clearInterval(timer);
+    timer = window.setInterval(() => {
+      if (!engaged) goTo(wi + 1);
+    }, 3600);
+  }
+
+  cycle?.addEventListener('click', () => { goTo(wi + 1); restart(); });
+  document.addEventListener('requestscene', (e) => { goTo((e as CustomEvent<number>).detail); restart(); });
+  document.addEventListener('stage-engage', () => (engaged = true));
+  document.addEventListener('stage-release', () => { engaged = false; restart(); });
+  document.addEventListener('langchange', () => { if (cycle) cycle.textContent = words()[wi % words().length]; });
+
+  // process strip plays once, when it first becomes visible
+  const flow = document.querySelector('.flow');
+  if (flow) {
+    new IntersectionObserver((entries, obs) => {
+      if (entries[0].isIntersecting) { flow.classList.add('go'); obs.disconnect(); }
+    }, { threshold: 0.6 }).observe(flow);
+  }
+
+  // live Bogotá clock in the eyebrow
+  const clock = document.getElementById('bogotaTime');
+  function tick() {
+    if (!clock) return;
+    const now = new Date();
+    const txt = new Intl.DateTimeFormat(lang() === 'en' ? 'en-US' : 'es-CO', {
+      timeZone: 'America/Bogota', hour: 'numeric', minute: '2-digit', hour12: true,
+    }).format(now);
+    if (clock.textContent !== txt) clock.textContent = txt;
+    clock.setAttribute('datetime', now.toISOString());
+  }
+  tick();
+  setInterval(tick, 1000);
+  document.addEventListener('langchange', tick);
+
+  if (cycle) cycle.textContent = words()[0];
+  initStage();
+  restart();
+</script>

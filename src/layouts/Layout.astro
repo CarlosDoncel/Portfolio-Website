@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+import { asset } from '../utils/asset';
+
+interface Props {
+  title?: string;
+}
+const { title = 'Carlos Doncel — Ingeniero Multimedia' } = Astro.props;
+const description =
+  'Portfolio de Carlos Doncel, Ingeniero Multimedia en Bogotá: videojuegos, VR/XR, UX/UI, websites, software y QA.';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#F7F4EE" />
+    <link rel="icon" href={asset('logo.png')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // restore language before first paint to avoid a flash
+      try {
+        var l = localStorage.getItem('lang');
+        if (l === 'en' || l === 'es') document.documentElement.lang = l;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="progress" class="fixed left-0 top-0 z-[200] h-[3px] w-0 bg-accent"></div>
+    <slot />
+    <script>
+      // scroll progress
+      const bar = document.getElementById('progress');
+      const onScroll = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        if (bar) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // reveal on scroll
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              io.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

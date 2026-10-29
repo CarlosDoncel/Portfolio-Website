@@ -1,0 +1,148 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #f7f4ee;
+  --color-paper-2: #efeae0;
+  --color-ink: #1a1a1a;
+  --color-dim: #6b655d;
+  --color-accent: #8b2635;
+  --color-accent-deep: #6c1a28;
+  --color-line: rgb(26 26 26 / 0.13);
+
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --animate-pulse-dot: pulse-dot 1.6s ease-in-out infinite;
+  --animate-blink: blink 1s steps(1) infinite;
+
+  @keyframes pulse-dot {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+    overflow-x: hidden;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    line-height: 1.55;
+    background-image: radial-gradient(rgb(26 26 26 / 0.06) 1px, transparent 1px);
+    background-size: 14px 14px;
+    overflow-x: clip;
+  }
+  ::selection {
+    @apply bg-accent text-white;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* ---- i18n: both languages are in the markup, CSS shows one ---- */
+html[lang='es'] [data-lang='en'],
+html[lang='en'] [data-lang='es'] {
+  display: none !important;
+}
+
+/* ---- reusable pieces ---- */
+@layer components {
+  .eyebrow {
+    @apply font-mono text-[12px] uppercase tracking-[0.1em] text-accent;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border px-6 py-3.5 text-sm font-semibold transition-all duration-200;
+  }
+  .btn-solid {
+    @apply border-ink bg-ink text-paper hover:border-accent hover:bg-accent;
+  }
+  .btn-outline {
+    @apply border-line text-ink hover:border-ink hover:bg-ink/5;
+  }
+  .section-title {
+    @apply font-display text-[clamp(1.8rem,3vw,2.6rem)] font-bold tracking-tight;
+  }
+  .tag {
+    @apply rounded-md border border-line bg-paper-2 px-2.5 py-1 font-mono text-[11px] text-dim;
+  }
+}
+
+/* ---- reveal on scroll ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+dialog.project-dialog::backdrop {
+  background: rgb(20 18 16 / 0.72);
+  backdrop-filter: blur(6px);
+}
+dialog.project-dialog[open] {
+  animation: dialog-in 0.28s ease both;
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- marquee ---- */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---- hero backdrop ---- */
+.hero-glow {
+  background:
+    radial-gradient(60% 60% at 85% 10%, rgb(139 38 53 / 0.14), transparent 70%),
+    radial-gradient(40% 40% at 5% 90%, rgb(139 38 53 / 0.07), transparent 70%);
+}

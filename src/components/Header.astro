@@ -1,0 +1,102 @@
+---
+import T from './T.astro';
+import { asset } from '../utils/asset';
+const links = [
+  { href: '#trabajo', es: 'Trabajo', en: 'Work' },
+  { href: '#perfil', es: 'Perfil', en: 'Profile' },
+  { href: '#contacto', es: 'Contacto', en: 'Contact' },
+];
+const nameChars = [...'Carlos Doncel'];
+const keep = new Set([0, 7]); // C and D stay when the name collapses
+const roles = { es: 'Ingeniero Multimedia', en: 'Multimedia Engineer' } as const;
+const ch = (c: string) => (c === ' ' ? '\u00A0' : c);
+---
+
+<header
+  class="sticky top-0 z-[100] flex items-center justify-between gap-5 border-b border-line bg-paper/80 px-[6vw] py-2 backdrop-blur-xl"
+>
+  <a href="#" class="brand flex items-center gap-3" aria-label="Carlos Doncel — inicio / home">
+    <img src={asset('logo.png')} alt="" class="block h-[56px] w-auto sm:h-[68px]" />
+    <span class="nm" aria-hidden="true">
+      <span class="row name">
+        {nameChars.map((c, i) => <span class:list={['c', { keep: keep.has(i) }]} style={`--i:${i}`}>{ch(c)}</span>)}
+      </span>
+      {(['es', 'en'] as const).map((l) => (
+        <span data-lang={l} class="row role">
+          {[...roles[l]].map((c, i) => <span class="c" style={`--i:${i}`}>{ch(c)}</span>)}
+        </span>
+      ))}
+    </span>
+  </a>
+
+  <div class="flex items-center gap-7">
+    <nav class="hidden gap-1 rounded-full border border-line bg-paper-2/60 p-1 text-sm sm:flex" aria-label="Principal">
+      {
+        links.map((l) => (
+          <a href={l.href} class="rounded-full px-4 py-1.5 text-dim transition-colors hover:bg-ink hover:text-paper">
+            <T es={l.es} en={l.en} />
+          </a>
+        ))
+      }
+    </nav>
+
+    <div
+      class="flex overflow-hidden rounded-full border border-line font-mono text-xs"
+      role="group"
+      aria-label="Idioma / Language"
+    >
+      <button
+        type="button"
+        data-set-lang="es"
+        class="px-3.5 py-2 text-dim transition-colors aria-pressed:bg-ink aria-pressed:text-paper"
+      >ES</button>
+      <button
+        type="button"
+        data-set-lang="en"
+        class="px-3.5 py-2 text-dim transition-colors aria-pressed:bg-ink aria-pressed:text-paper"
+      >EN</button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nm { position: relative; display: block; height: 1.5em; font-size: 1.05rem; line-height: 1.5em; clip-path: inset(0 -100vw 0 -4px); }
+  .row { display: flex; white-space: nowrap; }
+  .name { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; color: var(--color-ink); }
+  .role { position: absolute; left: 0; top: 0; height: 100%; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); transition: opacity 0.2s; }
+  .c { display: inline-block; max-width: 1.3em; overflow-x: clip; transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 22ms), max-width 0.4s ease calc(var(--i) * 14ms), opacity 0.3s ease calc(var(--i) * 14ms); }
+  .role .c { transform: translateY(125%); }
+  .brand:hover .name .c, .brand:focus-visible .name .c { transform: translateY(-125%); }
+  .brand:hover .role .c, .brand:focus-visible .role .c { transform: translateY(0); }
+
+  /* scrolled: the name folds into "CD", expands again on hover */
+  header[data-scrolled] .name .c:not(.keep) { max-width: 0; opacity: 0; }
+  header[data-scrolled] .role { opacity: 0; }
+  header[data-scrolled] .brand:hover .name .c, header[data-scrolled] .brand:focus-visible .name .c { transform: none; }
+  header[data-scrolled] .brand:hover .name .c:not(.keep), header[data-scrolled] .brand:focus-visible .name .c:not(.keep) { max-width: 1.3em; opacity: 1; }
+</style>
+
+<script>
+  const header = document.querySelector('header');
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (y > 60) header?.setAttribute('data-scrolled', '');
+    else if (y < 20) header?.removeAttribute('data-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-set-lang]');
+  function setLang(lang: 'es' | 'en') {
+    document.documentElement.lang = lang;
+    try {
+      localStorage.setItem('lang', lang);
+    } catch {}
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setLang === lang)));
+    document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
+  }
+  buttons.forEach((b) => b.addEventListener('click', () => setLang(b.dataset.setLang as 'es' | 'en')));
+  // sync initial pressed state
+  const initial = document.documentElement.lang === 'en' ? 'en' : 'es';
+  buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setLang === initial)));
+</script>

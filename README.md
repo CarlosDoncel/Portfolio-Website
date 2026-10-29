@@ -1,2 +1,20 @@
-# Portfolio-Website
-Portafolio digital donde presento mis proyectos y experiencia en desarrollo de software, videojuegos, realidad virtual, UX/UI, websites y QA. Combina diseño editorial, interacción y tecnología para mostrar no solo el resultado de cada proyecto, sino también mi forma de trabajar y las soluciones que desarrollo.
+# Portfolio — Carlos Doncel (Astro + Tailwind)
+
+## Uso
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # genera /dist
+```
+
+## Imágenes y videos
+Copia tu carpeta `imagenes/` dentro de `public/imagenes/` (mismos nombres que antes:
+`alas-portada.jpg`, `ojos-trailer.mp4`, etc.). El logo ya está en `public/logo.png`.
+
+## Dónde editar
+- `src/data/projects.ts` — todo el contenido de los 4 proyectos (ES/EN)
+- `src/components/*.astro` — una sección por archivo
+- `src/styles/global.css` — colores, fuentes y animaciones (bloque `@theme`)
+
+## Deploy
+Sube `dist/` a GitHub Pages, o conecta el repo a Vercel/Netlify (comando `npm run build`, carpeta `dist`).
