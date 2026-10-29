@@ -146,3 +146,37 @@ dialog.project-dialog[open] {
     radial-gradient(60% 60% at 85% 10%, rgb(139 38 53 / 0.14), transparent 70%),
     radial-gradient(40% 40% at 5% 90%, rgb(139 38 53 / 0.07), transparent 70%);
 }
+
+/* ---- soft garnet glows for other sections (same language as the hero) ---- */
+.glow {
+  position: relative;
+  isolation: isolate;
+}
+.glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+  background: var(--glow);
+}
+.glow-profile {
+  --glow:
+    radial-gradient(38% 32% at 94% 22%, rgb(139 38 53 / 0.09), transparent 70%),
+    radial-gradient(30% 26% at 4% 92%, rgb(139 38 53 / 0.06), transparent 70%);
+}
+.glow-how {
+  --glow:
+    radial-gradient(40% 55% at 3% 20%, rgb(139 38 53 / 0.10), transparent 70%),
+    radial-gradient(34% 50% at 98% 95%, rgb(139 38 53 / 0.07), transparent 70%);
+}
+.glow-work {
+  --glow:
+    radial-gradient(36% 18% at 96% 8%, rgb(139 38 53 / 0.09), transparent 70%),
+    radial-gradient(32% 16% at 2% 55%, rgb(139 38 53 / 0.06), transparent 70%),
+    radial-gradient(36% 16% at 98% 92%, rgb(139 38 53 / 0.08), transparent 70%);
+}

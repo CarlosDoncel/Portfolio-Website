@@ -9,58 +9,56 @@ const w = (x: string): L => ({ es: x, en: x });
 const join = (items: Item[], lang: 'es' | 'en') => items.map((i) => (typeof i === 'string' ? i : i[lang])).join(', ');
 const isMono = (items: Item[]) => items.every((i) => typeof i === 'string');
 
-const blocks: { n: string; title: L; feat: L; groups: Group[] }[] = [
+const rows: { n: string; title: L; key: L; groups: Group[] }[] = [
   {
-    n: '01', title: { es: 'Software', en: 'Software' }, feat: w('C# · React · Python'),
+    n: '01', title: { es: 'Software', en: 'Software' }, key: w('C# · Python · JavaScript · React · SQL · Unity'),
     groups: [
       { label: { es: 'Lenguajes y frameworks', en: 'Languages & frameworks' }, items: ['C#', 'C++', 'Java', 'Python', 'JavaScript', 'React', 'HTML/CSS', '.NET'] },
       { label: { es: 'Datos e integraciones', en: 'Data & integrations' }, items: ['SQL', 'MySQL', 'PostgreSQL', 'MongoDB', 'Firebase', 'APIs REST'] },
       { label: { es: 'Videojuegos y VR', en: 'Games & VR' }, items: [
         'Unity', 'Meta Quest', { es: 'Desarrollo de videojuegos', en: 'Game development' }, { es: 'Realidad virtual', en: 'Virtual reality' }, { es: 'Experiencias interactivas', en: 'Interactive experiences' },
       ] },
-      { label: { es: 'Enfoque', en: 'Focus' }, items: [{ es: 'Diseño responsivo', en: 'Responsive design' }] },
+      { label: { es: 'Herramientas', en: 'Tools' }, items: ['Git/GitHub', 'Scrum', { es: 'Diseño responsivo', en: 'Responsive design' }] },
     ],
   },
   {
-    n: '02', title: { es: 'QA y testing', en: 'QA & testing' }, feat: { es: 'Funcional · Regresión · API', en: 'Functional · Regression · API' },
+    n: '02', title: { es: 'QA y testing', en: 'QA & testing' }, key: { es: 'Funcional · Regresión · API · Postman · Jira', en: 'Functional · Regression · API · Postman · Jira' },
     groups: [
       { label: { es: 'Tipos de prueba', en: 'Test types' }, items: [
         { es: 'Funcionales', en: 'Functional' }, { es: 'Integración', en: 'Integration' }, { es: 'Regresión', en: 'Regression' }, { es: 'Exploratorias', en: 'Exploratory' }, w('Smoke'),
       ] },
       { label: { es: 'Proceso', en: 'Process' }, items: [
         { es: 'Diseño de casos de prueba', en: 'Test case design' }, { es: 'Reporte de defectos', en: 'Defect reporting' }, { es: 'Pruebas de API', en: 'API testing' },
+        { es: 'Documentación de pruebas', en: 'Test documentation' },
       ] },
       { label: { es: 'Herramientas', en: 'Tools' }, items: ['Postman', 'Selenium', 'TestRail', 'Jira'] },
     ],
   },
   {
-    n: '03', title: { es: 'Diseño y contenido', en: 'Design & content' }, feat: w('Figma · Maya · After Effects'),
+    n: '03', title: { es: 'Diseño y contenido', en: 'Design & content' }, key: w('Figma · UX/UI · Photoshop · After Effects · Maya'),
     groups: [
       { label: { es: 'UX/UI y producto', en: 'UX/UI & product' }, items: [
         { es: 'Diseño de interfaces', en: 'Interface design' }, { es: 'Diseño de interacción', en: 'Interaction design' }, w('Wireframes'), { es: 'Prototipado', en: 'Prototyping' },
         { es: 'Flujos de usuario', en: 'User flows' }, { es: 'Usabilidad', en: 'Usability' }, { es: 'Jerarquía visual', en: 'Visual hierarchy' }, { es: 'Tipografía', en: 'Typography' }, 'Figma',
       ] },
       { label: { es: 'Creación de contenido', en: 'Content creation' }, items: [
-        { es: 'Edición de fotos', en: 'Photo editing' }, { es: 'Edición de video', en: 'Video editing' },
-        'Adobe Photoshop', 'Illustrator', 'After Effects',
+        { es: 'Edición de fotos', en: 'Photo editing' }, { es: 'Edición de video', en: 'Video editing' }, 'Adobe Photoshop', 'Illustrator', 'After Effects',
       ] },
       { label: { es: 'Modelado 3D', en: '3D modeling' }, items: ['Autodesk Maya', 'Adobe Substance 3D'] },
+      { label: { es: 'Método', en: 'Method' }, items: [
+        w('Design Thinking'), { es: 'Diseño centrado en el usuario', en: 'User-centered design' }, { es: 'Diseño iterativo', en: 'Iterative design' },
+      ] },
     ],
   },
 ];
 
-const method: Item[] = [
-  'Git/GitHub', 'Scrum', { es: 'Documentación de pruebas', en: 'Test documentation' }, { es: 'Diseño centrado en el usuario', en: 'User-centered design' },
-  w('Design Thinking'), { es: 'Diseño iterativo', en: 'Iterative design' },
-];
-const soft: Item[] = [
-  { es: 'Pensamiento analítico', en: 'Analytical thinking' }, { es: 'Resolución de problemas', en: 'Problem solving' }, { es: 'Atención al detalle', en: 'Attention to detail' },
-  { es: 'Creatividad', en: 'Creativity' }, { es: 'Comunicación', en: 'Communication' }, { es: 'Trabajo en equipo', en: 'Teamwork' },
-  { es: 'Adaptabilidad', en: 'Adaptability' }, { es: 'Aprendizaje continuo', en: 'Continuous learning' },
+const soft: L[] = [
+  { es: 'Pensamiento analítico', en: 'Analytical thinking' }, { es: 'Atención al detalle', en: 'Attention to detail' },
+  { es: 'Creatividad', en: 'Creativity' }, { es: 'Trabajo en equipo', en: 'Teamwork' },
 ];
 ---
 
-<section id="perfil" class="mx-auto max-w-[1240px] px-[6vw] pb-28 pt-16">
+<section id="perfil" class="glow glow-profile mx-auto max-w-[1240px] px-[6vw] pb-28 pt-16">
   <div class="mb-14 flex items-baseline gap-4">
     <span class="font-mono text-[13px] text-accent">01</span>
     <h2 class="section-title"><T es="Perfil" en="Profile" /></h2>
@@ -72,81 +70,90 @@ const soft: Item[] = [
     <p class="font-display text-[clamp(1.9rem,3.4vw,2.9rem)] font-semibold leading-[1.08] tracking-[-0.025em]">
       <T es="Entender el sistema, " en="Understand the system, " /><span class="text-accent"><T es="diseñarlo y construirlo mejor." en="design it, and build it better." /></span>
     </p>
-    <div class="max-w-[52ch] space-y-4 text-[1.04rem] text-dim lg:pt-2">
-      <p>
+    <div class="max-w-[50ch] lg:pt-2">
+      <p class="text-[1.06rem] leading-[1.65] text-dim">
         <T
-          es="Me interesa entender cómo funcionan los sistemas para poder construirlos mejor. Vengo del desarrollo de videojuegos y la realidad virtual, con una base sólida en programación, resolución de problemas, UX/UI y diseño de interacción."
-          en="I’m interested in understanding how systems work so I can build them better. I come from game development and virtual reality, with a solid foundation in programming, problem solving, UX/UI, and interaction design."
+          es="Disfruto resolver problemas, construir cosas y encontrar formas de hacerlas mejor. Me interesa tanto cómo funciona un producto como la experiencia de quienes lo utilizan."
+          en="I enjoy solving problems, building things, and finding ways to make them better. I care as much about how a product works as about the experience of the people who use it."
         />
       </p>
-      <p>
-        <T
-          es="Me motiva convertir ideas en soluciones de software, websites y experiencias digitales prácticas, cuidando también su usabilidad, pruebas y calidad antes de entregarlas."
-          en="I’m motivated by turning ideas into practical software, websites, and digital experiences, while also caring about usability, testing, and quality before delivery."
-        />
+      <p class="mt-6 border-t border-line pt-4 font-mono text-[12px] leading-[1.9] text-ink">
+        <span class="mr-4 inline-block"><span class="text-accent">●</span> <T es="Ing. Multimedia · UMNG 2026" en="Multimedia Eng. · UMNG 2026" /></span>
+        <span class="inline-block"><span class="text-accent">●</span> <T es="Español nativo · Inglés B2" en="Spanish native · English B2" /></span>
       </p>
     </div>
   </div>
 
-  <!-- quick facts -->
-  <div class="reveal mt-14 grid gap-8 border-t border-ink/80 pt-6 sm:grid-cols-2 lg:grid-cols-[0.9fr_0.9fr_2fr] lg:gap-12">
-    <div>
-      <div class="lbl"><T es="Formación" en="Education" /></div>
-      <div class="font-display text-[1.15rem] font-semibold leading-tight"><T es="Ingeniería Multimedia" en="Multimedia Engineering" /></div>
-      <div class="mt-1 font-mono text-xs text-accent">UMNG · 2026</div>
-    </div>
-    <div>
-      <div class="lbl"><T es="Idiomas" en="Languages" /></div>
-      <div class="font-display text-[1.15rem] font-semibold leading-tight"><T es="Español · Inglés" en="Spanish · English" /></div>
-      <div class="mt-1 font-mono text-xs text-accent"><T es="Nativo · B2" en="Native · B2" /></div>
-    </div>
-    <div class="sm:col-span-2 lg:col-span-1">
-      <div class="lbl"><T es="Competencias" en="Core strengths" /></div>
-      <p class="text-[0.98rem] leading-[1.7] text-ink">
-        <T es={join(soft, 'es')} en={join(soft, 'en')} />
-      </p>
-    </div>
-  </div>
-
-  <!-- skills -->
-  <div class="cols mt-16 grid gap-0 lg:grid-cols-3">
+  <!-- skills: summary first, details on demand -->
+  <div class="sk mt-16 border-t border-ink/80">
     {
-      blocks.map((b) => (
-        <article class="col reveal border-t border-line py-8 lg:border-l lg:border-t-0 lg:px-9 lg:py-2 lg:first:border-l-0 lg:first:pl-0 lg:last:pr-0">
-          <div class="font-mono text-xs text-accent">{b.n}</div>
-          <h3 class="mt-3 font-display text-[clamp(1.6rem,2.4vw,2.1rem)] font-bold leading-none tracking-[-0.03em]"><T es={b.title.es} en={b.title.en} /></h3>
-          <span class="bar"></span>
-          <p class="mt-4 font-display text-[1.02rem] font-medium text-dim"><T es={b.feat.es} en={b.feat.en} /></p>
-
-          <div class="mt-8 space-y-6">
-            {b.groups.map((g) => (
-              <div>
-                <div class="lbl"><T es={g.label.es} en={g.label.en} /></div>
-                <p class:list={['text-[0.97rem] leading-[1.75] text-ink', { 'font-mono text-[0.86rem] leading-[1.9]': isMono(g.items) }]}>
-                  <T es={join(g.items, 'es')} en={join(g.items, 'en')} />
-                </p>
+      rows.map((r) => (
+        <div class="sk-row reveal border-b border-line">
+          <button type="button" class="sk-head" aria-expanded="false">
+            <span class="sk-n">{r.n}</span>
+            <span class="sk-title"><T es={r.title.es} en={r.title.en} /></span>
+            <span class="sk-key"><T es={r.key.es} en={r.key.en} /></span>
+            <span class="sk-ico" aria-hidden="true"></span>
+          </button>
+          <div class="sk-more">
+            <div class="sk-inner">
+              <div class="sk-groups">
+                {r.groups.map((g) => (
+                  <div>
+                    <div class="lbl"><T es={g.label.es} en={g.label.en} /></div>
+                    <p class:list={['text-[0.95rem] leading-[1.75] text-ink', { 'font-mono text-[0.84rem] leading-[1.9]': isMono(g.items) }]}>
+                      <T es={join(g.items, 'es')} en={join(g.items, 'en')} />
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </article>
+        </div>
       ))
     }
-  </div>
-
-  <!-- methods -->
-  <div class="reveal mt-10 grid gap-3 border-t border-line pt-6 lg:grid-cols-[170px_1fr] lg:gap-10">
-    <div class="lbl !mb-0"><T es="Metodologías y herramientas" en="Methods & tools" /></div>
-    <p class="text-[0.98rem] leading-[1.7] text-ink"><T es={join(method, 'es')} en={join(method, 'en')} /></p>
+    <div class="reveal flex flex-wrap items-baseline gap-x-6 gap-y-2 py-5">
+      <span class="lbl !mb-0"><T es="Competencias" en="Core strengths" /></span>
+      <span class="text-[0.98rem] text-ink"><T es={soft.map((x) => x.es).join(' · ')} en={soft.map((x) => x.en).join(' · ')} /></span>
+    </div>
   </div>
 </section>
 
 <style>
   .lbl { margin-bottom: 0.45rem; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-dim); }
-  .bar { display: block; height: 2px; width: 2.2rem; margin-top: 0.9rem; background: var(--color-accent); transition: width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  .col { transition: opacity 0.3s; }
-  @media (hover: hover) and (min-width: 1024px) {
-    .cols:hover .col:not(:hover) { opacity: 0.45; }
-    .col:hover .bar { width: 100%; }
+
+  .sk-head { display: grid; width: 100%; grid-template-columns: 2.4rem minmax(0, 1fr) auto; align-items: baseline; gap: 0.3rem 1rem; padding: 1.5rem 0; text-align: left; cursor: pointer; }
+  .sk-n { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-accent); }
+  .sk-title { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1; font-size: clamp(1.7rem, 2.6vw, 2.3rem); color: var(--color-ink); transition: color 0.2s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .sk-key { grid-column: 2; font-size: 0.98rem; color: var(--color-dim); }
+  .sk-ico { position: relative; grid-column: 3; grid-row: 1; align-self: center; width: 2.1rem; height: 2.1rem; border: 1px solid var(--color-line); border-radius: 999px; transition: background 0.25s, border-color 0.25s, transform 0.35s; }
+  .sk-ico::before, .sk-ico::after { content: ''; position: absolute; left: 50%; top: 50%; width: 0.8rem; height: 1.5px; background: var(--color-ink); transform: translate(-50%, -50%); transition: transform 0.35s, background 0.25s; }
+  .sk-ico::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .sk-head:hover .sk-title { color: var(--color-accent); transform: translateX(6px); }
+  .sk-head:hover .sk-ico { border-color: var(--color-ink); }
+  .sk-head[aria-expanded='true'] .sk-title { color: var(--color-accent); }
+  .sk-head[aria-expanded='true'] .sk-ico { background: var(--color-ink); border-color: var(--color-ink); transform: rotate(180deg); }
+  .sk-head[aria-expanded='true'] .sk-ico::before, .sk-head[aria-expanded='true'] .sk-ico::after { background: var(--color-paper); }
+  .sk-head[aria-expanded='true'] .sk-ico::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+  @media (min-width: 900px) {
+    .sk-title { white-space: nowrap; }
+    .sk-head { grid-template-columns: 2.4rem 21rem minmax(0, 1fr) auto; }
+    .sk-key { grid-column: 3; }
+    .sk-ico { grid-column: 4; }
   }
-  @media (prefers-reduced-motion: reduce) { .col, .bar { transition: none; } }
+
+  .sk-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .sk-head[aria-expanded='true'] + .sk-more { grid-template-rows: 1fr; }
+  .sk-inner { min-height: 0; overflow: hidden; }
+  .sk-groups { display: grid; gap: 1.6rem 2.5rem; padding: 0.4rem 0 2rem 3.4rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); opacity: 0; transform: translateY(-6px); transition: opacity 0.3s, transform 0.3s; }
+  .sk-head[aria-expanded='true'] + .sk-more .sk-groups { opacity: 1; transform: none; transition-delay: 0.1s; }
+  @media (max-width: 600px) { .sk-groups { padding-left: 0; } }
+  @media (prefers-reduced-motion: reduce) { .sk-more, .sk-groups, .sk-title, .sk-ico { transition: none; } }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.sk-head').forEach((b) => {
+    b.addEventListener('click', () => b.setAttribute('aria-expanded', String(b.getAttribute('aria-expanded') !== 'true')));
+  });
+</script>
