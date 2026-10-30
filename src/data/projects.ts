@@ -13,6 +13,7 @@ export interface Project {
   description: Bi; // modal
   role: Bi;
   tags: string[];
+  cardRole: Bi; // one-line role shown on the card
   cover: string;
   link: string;
   linkLabel: Bi;
@@ -24,6 +25,7 @@ export interface Project {
   contribution: Bi;
   gallery: { src: string; alt: string; caption: Bi }[];
   video: string;
+  videoFormat: 'vertical' | 'horizontal'; // trailer orientation
 }
 
 const same = (s: string): Bi => ({ es: s, en: s });
@@ -49,10 +51,11 @@ export const projects: Project[] = [
       en: 'Educational exploration game that turns real-world movement into a mission: discover endemic birds, face creatures, collect clues, and share the challenge with other players.',
     },
     role: {
-      es: 'Software Developer · Gameplay · Geolocalización · Multiplayer · UX/UI',
-      en: 'Software Developer · Gameplay · Geolocation · Multiplayer · UX/UI',
+      es: 'Software Developer · Gameplay · Geolocalización · Multiplayer · UX/UI · QA y validación',
+      en: 'Software Developer · Gameplay · Geolocation · Multiplayer · UX/UI · QA & validation',
     },
     tags: ['Unity 6', 'Firebase', 'Mapbox', 'Photon PUN 2'],
+    cardRole: { es: 'Software · Gameplay · UX/UI', en: 'Software · Gameplay · UX/UI' },
     cover: asset('/imagenes/alas-portada.jpg'),
     link: 'https://ingenmultimedia.github.io/AlasdelCalabozo/index.html',
     linkLabel: { es: 'Visitar proyecto ↗', en: 'Visit project ↗' },
@@ -89,8 +92,8 @@ export const projects: Project[] = [
     ],
     stack: 'Unity · C# · Mapbox · Photon PUN 2 · Firebase · SQLite · PlayerPrefs',
     contribution: {
-      es: 'Gameplay, lógica de exploración y combate, integración de geolocalización, sistemas multijugador y gestión de datos.',
-      en: 'Gameplay, exploration and combat logic, geolocation integration, multiplayer systems, and data management.',
+      es: 'Gameplay, lógica de exploración y combate, integración de geolocalización, sistemas multijugador y gestión de datos. Participé en QA: validación de funcionalidades, pruebas de errores y revisión de la experiencia antes de entregar.',
+      en: 'Gameplay, exploration and combat logic, geolocation integration, multiplayer systems, and data management. I took part in QA: feature validation, error testing, and experience review before delivery.',
     },
     gallery: [
       { src: asset('/imagenes/alas-gameplay.jpg'), alt: 'Alas del Calabozo — gameplay', caption: { es: 'Criaturas y sistema de combate', en: 'Creatures and combat system' } },
@@ -99,6 +102,7 @@ export const projects: Project[] = [
       { src: asset('/imagenes/alas-portada.jpg'), alt: 'Alas del Calabozo — portada', caption: { es: 'Identidad visual del proyecto', en: 'Project visual identity' } },
     ],
     video: asset('/imagenes/alas-trailer.mp4'),
+    videoFormat: 'vertical',
   },
   {
     key: 'ojos',
@@ -120,10 +124,11 @@ export const projects: Project[] = [
       en: 'Immersive virtual reality experience where the user becomes a bee and experiences firsthand the ecological challenges faced by these essential pollinators.',
     },
     role: {
-      es: 'VR Developer · Diseño de interacción · UX/UI · Optimización VR',
-      en: 'VR Developer · Interaction Design · UX/UI · VR Optimization',
+      es: 'VR Developer · Diseño de interacción · UX/UI · Optimización VR · QA y validación',
+      en: 'VR Developer · Interaction Design · UX/UI · VR Optimization · QA & validation',
     },
     tags: ['Meta Quest', 'Unity', 'C#', 'VR'],
+    cardRole: { es: 'VR · Interacción · UX/UI', en: 'VR · Interaction · UX/UI' },
     cover: asset('/imagenes/ojos-portada.jpg'),
     link: 'https://www.behance.net/gallery/230275761/Los-ojos-del-planeta',
     linkLabel: { es: 'Visitar proyecto ↗', en: 'Visit project ↗' },
@@ -160,8 +165,8 @@ export const projects: Project[] = [
     ],
     stack: 'Unity · C# · Meta Quest · VR',
     contribution: {
-      es: 'Movimiento del jugador, interacciones inmersivas, UX/UI, optimización para VR y aportes a la narrativa dentro de un equipo de tres personas.',
-      en: 'Player movement, immersive interactions, UX/UI, VR optimization, and narrative contributions within a three-person team.',
+      es: 'Movimiento del jugador, interacciones inmersivas, UX/UI, optimización para VR y aportes a la narrativa dentro de un equipo de tres personas. Participé en QA: validación de interacciones y pruebas de errores en VR.',
+      en: 'Player movement, immersive interactions, UX/UI, VR optimization, and narrative contributions within a three-person team. I took part in QA: interaction validation and error testing in VR.',
     },
     gallery: [
       { src: asset('/imagenes/ojos-experiencia.jpg'), alt: 'Los Ojos del Planeta — experiencia', caption: { es: 'Conciencia ambiental desde la perspectiva de una abeja', en: 'Environmental awareness from a bee’s perspective' } },
@@ -170,6 +175,7 @@ export const projects: Project[] = [
       { src: asset('/imagenes/ojos-portada.jpg'), alt: 'Los Ojos del Planeta — portada', caption: { es: 'Identidad visual del proyecto', en: 'Project visual identity' } },
     ],
     video: asset('/imagenes/ojos-trailer.mp4'),
+    videoFormat: 'vertical',
   },
   {
     key: 'flowdesk',
@@ -192,6 +198,7 @@ export const projects: Project[] = [
     },
     role: same('Full-Stack Developer · Backend · Frontend · QA · DevOps'),
     tags: ['React', 'TypeScript', 'FastAPI', 'PostgreSQL', 'CI/CD', 'QA'],
+    cardRole: { es: 'Full-Stack · QA · DevOps', en: 'Full-Stack · QA · DevOps' },
     cover: asset('/imagenes/flowdesk-portada.jpg'),
     link: 'https://flow-desk-ochre.vercel.app',
     linkLabel: { es: 'Visitar proyecto ↗', en: 'Visit project ↗' },
@@ -229,8 +236,8 @@ export const projects: Project[] = [
     ],
     stack: 'React 18 · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · React Query · Tailwind CSS',
     contribution: {
-      es: 'Arquitectura full-stack, autenticación JWT, RBAC, gestión de proyectos, bug tracking, Testing Center, analytics, Project Health, notificaciones y automatización de pruebas/CI.',
-      en: 'Full-stack architecture, JWT authentication, RBAC, project management, bug tracking, Testing Center, analytics, Project Health, notifications, and automated testing/CI.',
+      es: 'Arquitectura full-stack, autenticación JWT, RBAC, gestión de proyectos, bug tracking, Testing Center, analytics, Project Health, notificaciones y automatización de pruebas/CI. Incluye validación funcional y pruebas de errores del propio producto.',
+      en: 'Full-stack architecture, JWT authentication, RBAC, project management, bug tracking, Testing Center, analytics, Project Health, notifications, and automated testing/CI. Includes functional validation and error testing of the product itself.',
     },
     gallery: [
       { src: asset('/imagenes/flowdesk-dashboard.jpg'), alt: 'FlowDesk — dashboard', caption: { es: 'Dashboard y visión general del proyecto', en: 'Project dashboard and overview' } },
@@ -239,6 +246,7 @@ export const projects: Project[] = [
       { src: asset('/imagenes/flowdesk-portada.jpg'), alt: 'FlowDesk — portada', caption: { es: 'Identidad visual de la plataforma', en: 'Platform visual identity' } },
     ],
     video: asset('/imagenes/flowdesk-trailer.mp4'),
+    videoFormat: 'horizontal',
   },
   {
     key: 'gymtrack',
@@ -259,8 +267,9 @@ export const projects: Project[] = [
       es: 'Aplicación móvil de fitness full-stack para gestionar entrenamientos, progreso, rutinas y objetivos, con backend propio, base de datos real y una app móvil nativa.',
       en: 'Full-stack fitness mobile application for managing workouts, progress, routines, and goals with its own backend and real database.',
     },
-    role: same('Full-Stack Developer · Mobile · Backend · Database · DevOps'),
+    role: same('Full-Stack Developer · Mobile · Backend · Database · DevOps · QA'),
     tags: ['React Native', 'Expo', 'FastAPI', 'PostgreSQL', 'TypeScript', 'JWT'],
+    cardRole: { es: 'Full-Stack · Mobile · Backend', en: 'Full-Stack · Mobile · Backend' },
     cover: asset('/imagenes/gymtrack-portada.jpg'),
     link: 'https://github.com/CarlosDoncel/GymTrack',
     linkLabel: { es: 'Descargar APK ↗', en: 'Download APK ↗' },
@@ -297,8 +306,8 @@ export const projects: Project[] = [
     ],
     stack: 'React Native · Expo · TypeScript · FastAPI · Python · PostgreSQL · SQLAlchemy · TanStack Query · Axios · Expo Router',
     contribution: {
-      es: 'Desarrollo full-stack de la app móvil y backend, autenticación JWT, rutinas, ejercicios, sesiones de entrenamiento, progreso, gamificación, funciones sociales, nutrición, notificaciones y soporte offline-friendly.',
-      en: 'Full-stack development of the mobile app and backend, JWT authentication, routines, exercises, workout sessions, progress tracking, gamification, social features, nutrition, notifications, and offline-friendly support.',
+      es: 'Desarrollo full-stack de la app móvil y backend, autenticación JWT, rutinas, ejercicios, sesiones de entrenamiento, progreso, gamificación, funciones sociales, nutrición, notificaciones y soporte offline-friendly. Participé en QA: validación de funcionalidades y pruebas de errores.',
+      en: 'Full-stack development of the mobile app and backend, JWT authentication, routines, exercises, workout sessions, progress tracking, gamification, social features, nutrition, notifications, and offline-friendly support. I took part in QA: feature validation and error testing.',
     },
     gallery: [
       { src: asset('/imagenes/gymtrack-dashboard.jpg'), alt: 'GymTrack — dashboard', caption: { es: 'Dashboard y seguimiento del entrenamiento', en: 'Workout dashboard and tracking' } },
@@ -307,6 +316,7 @@ export const projects: Project[] = [
       { src: asset('/imagenes/gymtrack-social.jpg'), alt: 'GymTrack — social', caption: { es: 'Amigos, insignias y ranking', en: 'Friends, badges, and leaderboard' } },
     ],
     video: asset('/imagenes/gymtrack-trailer.mp4'),
+    videoFormat: 'vertical',
   },
 ];
 
@@ -314,13 +324,13 @@ export const groups = [
   {
     key: 'immersive' as const,
     num: '01',
-    title: { es: 'VIDEOJUEGOS · INTERACCIÓN · REALIDAD VIRTUAL', en: 'VIDEO GAMES · INTERACTION · VIRTUAL REALITY' },
+    title: { es: 'Videojuegos y VR', en: 'Games & VR' },
     note: { es: '2 proyectos', en: '2 projects' },
   },
   {
     key: 'software' as const,
     num: '02',
-    title: { es: 'DESARROLLO DE SOFTWARE', en: 'SOFTWARE DEVELOPMENT' },
+    title: { es: 'Software', en: 'Software' },
     note: { es: '2 proyectos', en: '2 projects' },
   },
 ];
