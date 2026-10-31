@@ -88,7 +88,10 @@ const ch = (c: string) => (c === ' ' ? '\u00A0' : c);
 
   const buttons = document.querySelectorAll<HTMLButtonElement>('[data-set-lang]');
   function setLang(lang: 'es' | 'en') {
-    document.documentElement.lang = lang;
+    const root = document.documentElement;
+    root.classList.add('lang-fade');
+    root.lang = lang;
+    setTimeout(() => root.classList.remove('lang-fade'), 400);
     try {
       localStorage.setItem('lang', lang);
     } catch {}

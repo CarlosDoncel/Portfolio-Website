@@ -4,55 +4,137 @@ const available = [
   { es: 'Software', en: 'Software' }, { es: 'Videojuegos', en: 'Games' }, { es: 'VR/XR', en: 'VR/XR' },
   { es: 'UX/UI', en: 'UX/UI' }, { es: 'Websites', en: 'Websites' }, { es: 'QA / Testing', en: 'QA / Testing' },
 ];
+const links = [
+  { k: 'LinkedIn', v: 'linkedin.com/in/carlos-doncel-', href: 'https://www.linkedin.com/in/carlos-doncel-/' },
+  { k: 'GitHub', v: 'github.com/CarlosDoncel', href: 'https://github.com/CarlosDoncel' },
+];
 ---
 
-<section id="contacto" class="relative overflow-hidden bg-ink text-paper">
-  <div class="pointer-events-none absolute -right-32 -top-32 size-[520px] rounded-full bg-accent/30 blur-[120px]"></div>
+<section id="contacto" class="contact-bg relative overflow-hidden">
+  <div class="relative mx-auto max-w-[1240px] px-[6vw] pb-10 pt-24">
+  <div class="mb-14 flex items-baseline gap-4">
+    <span class="font-mono text-[13px] text-accent">04</span>
+    <h2 class="section-title"><T es="Contacto" en="Contact" /></h2>
+    <span class="h-px flex-1 bg-line"></span>
+  </div>
 
-  <div class="relative mx-auto max-w-[1240px] px-[6vw] pb-10 pt-28">
-    <div class="reveal">
-      <div class="mb-6 flex items-center gap-4 font-mono text-[11px] tracking-[0.1em] text-[#d9a0a9]">
-        <span>04</span><span class="h-px w-10 bg-[#d9a0a9]/50"></span><T es="CONTÁCTAME" en="CONTACT ME" />
-      </div>
-      <h2 class="max-w-[16ch] font-display text-[clamp(2.4rem,6vw,5rem)] font-bold uppercase leading-[0.98] tracking-[-0.04em]">
-        <T es="¿Tienes una idea? " en="Have an idea? " /><span class="text-[#e08a97]"><T es="Hagámosla real." en="Let’s build it." /></span>
-      </h2>
-      <p class="mb-10 mt-7 max-w-[600px] text-[1.02rem] leading-relaxed text-paper/65">
+  <div class="reveal grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-16">
+    <!-- left: the ask -->
+    <div>
+      <h3 class="font-display text-[clamp(2.3rem,3.9vw,3.6rem)] font-bold leading-[0.98] tracking-[-0.04em]">
+        <T es="¿Tienes una idea?" en="Have an idea?" /><br />
+        <span class="text-accent"><T es="Hagámosla real." en="Let’s build it." /></span>
+      </h3>
+      <p class="mt-7 max-w-[52ch] text-[1.06rem] leading-[1.65] text-dim">
         <T
           es="Estoy disponible para desarrollar software, websites y experiencias interactivas, además de UX/UI y QA para mejorar la usabilidad, funcionalidad y calidad de un producto."
           en="I’m available for software, websites, and interactive experiences, as well as UX/UI and QA to improve a product’s usability, functionality, and quality."
         />
       </p>
-      <a
-        href="mailto:carlosdoncel2004@gmail.com?subject=Proyecto%20-%20Contacto%20desde%20mi%20portfolio"
-        class="group inline-flex items-center gap-4 rounded-full bg-paper px-8 py-4 font-display text-base font-semibold text-ink transition-all duration-200 hover:bg-accent hover:text-paper"
-        aria-label="Enviar correo a Carlos Daniel Doncel"
-      >
-        <T es="Hablemos" en="Let’s talk" />
-        <span class="transition-transform duration-200 group-hover:translate-x-1.5">→</span>
-      </a>
+      <div class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <a
+          href="mailto:carlosdoncel2004@gmail.com?subject=Proyecto%20-%20Contacto%20desde%20mi%20portfolio"
+          class="btn btn-solid group !rounded-full !px-8 !py-4 !text-base"
+          aria-label="Enviar correo a Carlos Daniel Doncel"
+        >
+          <T es="Hablemos" en="Let’s talk" />
+          <span class="transition-transform duration-200 group-hover:translate-x-1.5">→</span>
+        </a>
+        <span class="inline-flex items-center gap-2 font-mono text-[12px] text-dim">
+          <span class="size-1.5 animate-pulse-dot rounded-full bg-accent"></span>
+          <T es="Disponible para nuevos proyectos" en="Open to new projects" />
+        </span>
+      </div>
     </div>
 
-    <div class="mt-20 grid border-y border-paper/15 md:grid-cols-[1.2fr_1fr_1fr]">
-      <div class="py-6 pr-6">
-        <div class="mb-2.5 font-mono text-[10px] uppercase tracking-[0.08em] text-paper/45"><T es="Correo" en="Email" /></div>
-        <a class="font-semibold transition-colors hover:text-[#e08a97]" href="mailto:carlosdoncel2004@gmail.com">carlosdoncel2004@gmail.com</a>
-      </div>
-      <div class="border-t border-paper/15 py-6 md:border-l md:border-t-0 md:pl-6">
-        <div class="mb-2.5 font-mono text-[10px] uppercase tracking-[0.08em] text-paper/45">LinkedIn</div>
-        <a class="font-semibold transition-colors hover:text-[#e08a97]" href="https://www.linkedin.com/in/carlos-doncel-/" target="_blank" rel="noopener">linkedin.com/in/carlos-doncel-/ ↗</a>
-      </div>
-      <div class="border-t border-paper/15 py-6 md:border-l md:border-t-0 md:pl-6">
-        <div class="mb-2.5 font-mono text-[10px] uppercase tracking-[0.08em] text-paper/45"><T es="Disponible para" en="Available for" /></div>
+    <!-- right: ways to reach me -->
+    <div class="self-end border-t border-ink/80">
+      <button type="button" id="copyMail" data-mail="carlosdoncel2004@gmail.com" class="row copy">
+        <span class="k"><T es="Correo" en="Email" /></span>
+        <span class="v">carlosdoncel2004@gmail.com</span>
+        <span class="act">
+          <span class="copy-lbl"><T es="Copiar" en="Copy" /></span>
+          <span class="copy-ok"><T es="¡Copiado!" en="Copied!" /></span>
+        </span>
+      </button>
+      {
+        links.map((l) => (
+          <a class="row" href={l.href} target="_blank" rel="noopener">
+            <span class="k">{l.k}</span>
+            <span class="v">{l.v}</span>
+            <span class="act"><span class="arrow">↗</span></span>
+          </a>
+        ))
+      }
+      <span class="sr-only" role="status" aria-live="polite" id="copyStatus"></span>
+      <div class="py-5">
+        <div class="mb-2.5 font-mono text-[10px] uppercase tracking-[0.1em] text-dim"><T es="Disponible para" en="Available for" /></div>
         <div class="flex flex-wrap gap-1.5">
-          {available.map((a) => <span class="rounded-full border border-paper/20 px-2.5 py-1 font-mono text-[10px]"><T es={a.es} en={a.en} /></span>)}
+          {available.map((a) => <span class="tag !bg-paper/70"><T es={a.es} en={a.en} /></span>)}
         </div>
       </div>
     </div>
+  </div>
 
-    <footer class="flex flex-wrap justify-between gap-2.5 pt-8 font-mono text-[11px] text-paper/45">
-      <span>Carlos Daniel Doncel Cardoso</span>
-      <span>Bogotá, Colombia · 2026</span>
-    </footer>
+  <footer class="mt-20 flex flex-wrap items-center justify-between gap-x-6 gap-y-2.5 border-t border-line pt-6 font-mono text-[11px] text-dim">
+    <span>Carlos Daniel Doncel Cardoso · 2026</span>
+    <span class="inline-flex items-center gap-2">
+      <span class="size-1.5 animate-pulse-dot rounded-full bg-accent"></span>
+      Bogotá · <time id="footTime">--:--</time>
+    </span>
+  </footer>
   </div>
 </section>
+
+<script>
+  const btn = document.getElementById('copyMail') as HTMLButtonElement | null;
+  const status = document.getElementById('copyStatus');
+  let to = 0;
+  btn?.addEventListener('click', async () => {
+    const mail = btn.dataset.mail ?? '';
+    try { await navigator.clipboard.writeText(mail); }
+    catch {
+      const r = document.createRange(); r.selectNodeContents(btn.querySelector('.v') as Node);
+      const s = getSelection(); s?.removeAllRanges(); s?.addRange(r);
+      try { document.execCommand('copy'); } catch {}
+    }
+    btn.classList.add('done');
+    if (status) status.textContent = document.documentElement.lang === 'en' ? 'Email copied' : 'Correo copiado';
+    clearTimeout(to);
+    to = window.setTimeout(() => btn.classList.remove('done'), 1800);
+  });
+
+  const ft = document.getElementById('footTime');
+  const tick = () => {
+    if (!ft) return;
+    ft.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'en' ? 'en-US' : 'es-CO', {
+      timeZone: 'America/Bogota', hour: 'numeric', minute: '2-digit', hour12: true,
+    }).format(new Date());
+  };
+  tick(); setInterval(tick, 5000);
+  document.addEventListener('langchange', tick);
+</script>
+
+<style>
+  /* a touch warmer than the page, fading into a soft garnet glow */
+  .contact-bg {
+    background:
+      radial-gradient(60% 72% at 96% 100%, rgb(150 32 52 / 0.30), transparent 72%),
+      radial-gradient(40% 50% at 3% 14%, rgb(139 38 53 / 0.08), transparent 70%),
+      linear-gradient(180deg, var(--color-paper) 0, #eadfd3 190px, #e8d6cc 60%, #e4cbc3 100%);
+  }
+  .row { display: grid; width: 100%; grid-template-columns: 4.6rem minmax(0, 1fr) auto; align-items: baseline; gap: 0.2rem 1rem; padding: 1.35rem 0; border-bottom: 1px solid var(--color-line); text-align: left; cursor: pointer; transition: padding-left 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .row .k { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-dim); }
+  .row .v { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--color-ink); overflow-wrap: anywhere; transition: color 0.2s; }
+  .row .act { font-family: var(--font-mono); font-size: 11px; color: var(--color-accent); }
+  .row .arrow { display: inline-block; font-size: 1.1rem; transition: transform 0.3s; }
+  .row:hover { padding-left: 0.6rem; }
+  .row:hover .v { color: var(--color-accent); }
+  .row:hover .arrow { transform: translate(3px, -3px); }
+  .copy-ok { display: none; }
+  .copy.done .copy-lbl { display: none; }
+  .copy.done .copy-ok { display: inline; }
+  .copy.done .v { color: var(--color-accent); }
+  @media (min-width: 1024px) { .row .v { white-space: nowrap; } }
+  @media (max-width: 520px) { .row { grid-template-columns: minmax(0, 1fr) auto; } .row .k { grid-column: 1 / -1; } }
+</style>

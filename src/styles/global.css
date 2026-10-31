@@ -60,6 +60,11 @@ html[lang='en'] [data-lang='es'] {
   display: none !important;
 }
 
+/* soft cross-fade when the language switches */
+html.lang-fade [data-lang] { animation: lang-in 0.32s ease both; }
+@keyframes lang-in { from { opacity: 0; transform: translateY(3px); } }
+
+
 /* ---- reusable pieces ---- */
 @layer components {
   .eyebrow {
@@ -173,6 +178,11 @@ dialog.project-dialog[open] {
   --glow:
     radial-gradient(40% 55% at 3% 20%, rgb(139 38 53 / 0.10), transparent 70%),
     radial-gradient(34% 50% at 98% 95%, rgb(139 38 53 / 0.07), transparent 70%);
+}
+.glow-contact {
+  --glow:
+    radial-gradient(40% 40% at 96% 18%, rgb(139 38 53 / 0.11), transparent 70%),
+    radial-gradient(34% 36% at 4% 85%, rgb(139 38 53 / 0.07), transparent 70%);
 }
 .glow-work {
   --glow:

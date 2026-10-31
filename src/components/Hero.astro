@@ -143,8 +143,10 @@ const tech = raw.map(([name, ic]) => ({ name, path: ic.path, color: lum(ic.hex) 
     }, 160);
     document.dispatchEvent(new CustomEvent('scene', { detail: wi }));
   }
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function restart() {
     clearInterval(timer);
+    if (reduce) return; // no auto-cycling for people who asked for less motion; the word and dots still work on click
     timer = window.setInterval(() => {
       if (!engaged) goTo(wi + 1);
     }, 3600);

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { asset } from '../utils/asset';
+import { GOATCOUNTER } from '../config';
 
 interface Props {
   title?: string;
@@ -8,6 +9,30 @@ interface Props {
 const { title = 'Carlos Doncel — Ingeniero Multimedia' } = Astro.props;
 const description =
   'Portfolio de Carlos Doncel, Ingeniero Multimedia en Bogotá: videojuegos, VR/XR, UX/UI, websites, software y QA.';
+const siteUrl = (Astro.site?.origin ?? 'https://carlosdoncel.github.io') + import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': siteUrl + '#carlos',
+      name: 'Carlos Daniel Doncel Cardoso',
+      alternateName: 'Carlos Doncel',
+      jobTitle: 'Ingeniero Multimedia',
+      description,
+      url: siteUrl,
+      image: new URL(asset('og.png'), siteUrl).href,
+      email: 'mailto:carlosdoncel2004@gmail.com',
+      address: { '@type': 'PostalAddress', addressLocality: 'Bogotá', addressCountry: 'CO' },
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Militar Nueva Granada' },
+      knowsLanguage: ['es', 'en'],
+      knowsAbout: ['Desarrollo de software', 'Videojuegos', 'Realidad virtual', 'UX/UI', 'QA y testing', 'Unity', 'React'],
+      sameAs: ['https://www.linkedin.com/in/carlos-doncel-/', 'https://github.com/CarlosDoncel'],
+    },
+    { '@type': 'WebSite', '@id': siteUrl + '#site', url: siteUrl, name: 'Carlos Doncel — Portfolio', inLanguage: ['es', 'en'], author: { '@id': siteUrl + '#carlos' } },
+  ],
+};
+const ogImage = new URL(asset('og.png'), Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -17,16 +42,27 @@ const description =
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="canonical" href={siteUrl} />
+    <meta name="author" content="Carlos Daniel Doncel Cardoso" />
     <meta name="theme-color" content="#F7F4EE" />
-    <link rel="icon" href={asset('logo.png')} />
+    <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
+    <link rel="apple-touch-icon" href={asset('logo.png')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {GOATCOUNTER && <script is:inline data-goatcounter={`https://${GOATCOUNTER}.goatcounter.com/count`} async src="//gc.zgo.at/count.js"></script>}
     <script is:inline>
       // restore language before first paint to avoid a flash
       try {

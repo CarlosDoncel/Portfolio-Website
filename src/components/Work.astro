@@ -34,7 +34,7 @@ import { projects, groups } from '../data/projects';
                     <img
                       src={p.cover}
                       alt={`${p.title} — portada`}
-                      loading="lazy"
+                      loading="lazy" decoding="async" width="1920" height="1080"
                       class="size-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                     <div class="absolute inset-0 bg-gradient-to-b from-transparent from-35% to-black/75" />
@@ -74,7 +74,20 @@ import { projects, groups } from '../data/projects';
   }
 </section>
 
+<div id="cardPtr" aria-hidden="true"><T es="Ver proyecto" en="View project" /> <span>↗</span></div>
+
 <style>
+  #cardPtr {
+    position: fixed; left: 0; top: 0; z-index: 60; pointer-events: none;
+    padding: 0.55rem 0.95rem; background: var(--color-accent); color: #fff; white-space: nowrap;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 999px; opacity: 0; scale: 0.6; transform-origin: 0 0;
+    transition: opacity 0.2s, scale 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 6px 20px rgb(139 38 53 / 0.35);
+  }
+  #cardPtr.on { opacity: 1; scale: 1; }
+  @media (pointer: coarse), (prefers-reduced-motion: reduce) { #cardPtr { display: none; } }
+
   .go { display: grid; flex: none; width: 2.5rem; height: 2.5rem; margin-top: 1.25rem; place-items: center; border: 1px solid var(--color-line); border-radius: 999px; font-family: var(--font-mono); font-size: 0.9rem; transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s; }
   .card:hover .go, .card:focus-visible .go { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); transform: translateX(4px); }
 
@@ -219,7 +232,7 @@ import { projects, groups } from '../data/projects';
                     <img
                       src={g.src}
                       alt={g.alt}
-                      loading="lazy"
+                      loading="lazy" decoding="async" width="1920" height="1080"
                       data-slide
                       class={`absolute inset-0 size-full object-cover transition-opacity duration-300 ${i === 0 ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
                     />
@@ -231,7 +244,7 @@ import { projects, groups } from '../data/projects';
                 <div class="mt-2.5 grid grid-cols-4 gap-2">
                   {p.gallery.map((g, i) => (
                     <button type="button" data-thumb={i} aria-label={g.alt} class="thumb aspect-video overflow-hidden border border-line" data-on={i === 0 ? '' : undefined}>
-                      <img src={g.src} alt="" loading="lazy" class="size-full object-cover" />
+                      <img src={g.src} alt="" loading="lazy" decoding="async" width="1920" height="1080" class="size-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -268,6 +281,27 @@ import { projects, groups } from '../data/projects';
 }
 
 <script>
+  // "Ver proyecto" label that trails the mouse over the project cards (fine pointers only)
+  (() => {
+    const ptr = document.getElementById('cardPtr');
+    if (!ptr || !matchMedia('(pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let tx = 0, ty = 0, x = 0, y = 0, raf = 0, shown = false;
+    const loop = () => {
+      x += (tx - x) * 0.2; y += (ty - y) * 0.2;
+      ptr.style.translate = `${x + 16}px ${y + 18}px`;
+      raf = shown || Math.abs(tx - x) > 0.3 ? requestAnimationFrame(loop) : 0;
+    };
+    const place = (e: PointerEvent) => { tx = e.clientX; ty = e.clientY; };
+    document.querySelectorAll<HTMLElement>('#trabajo .card').forEach((c) => {
+      c.addEventListener('pointerenter', (e) => {
+        place(e); if (!shown) { x = tx; y = ty; }
+        shown = true; ptr.classList.add('on'); if (!raf) raf = requestAnimationFrame(loop);
+      });
+      c.addEventListener('pointermove', place);
+      c.addEventListener('pointerleave', () => { shown = false; ptr.classList.remove('on'); });
+      c.addEventListener('click', () => { shown = false; ptr.classList.remove('on'); });
+    });
+  })();
   const lockScroll = (on: boolean) => (document.body.style.overflow = on ? 'hidden' : '');
 
   const openProject = (key: string) => {

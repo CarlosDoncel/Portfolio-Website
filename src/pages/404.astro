@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import T from '../components/T.astro';
+import { asset } from '../utils/asset';
+---
+
+<Layout title="404 — Carlos Doncel">
+  <main class="grid min-h-svh place-items-center px-[6vw] py-20">
+    <div class="max-w-[640px]">
+      <div class="font-mono text-[12px] uppercase tracking-[0.1em] text-accent">
+        <T es="Error 404" en="Error 404" />
+      </div>
+      <h1 class="mt-4 font-display text-[clamp(3rem,10vw,7rem)] font-bold leading-[0.95] tracking-[-0.04em]">
+        404<span class="text-accent">.</span>
+      </h1>
+      <p class="mt-6 text-[1.1rem] leading-relaxed text-dim">
+        <T
+          es="Esta página no existe o se movió de lugar. Pasa que hasta los mejores proyectos tienen un bug."
+          en="This page doesn’t exist or has moved. Even the best projects ship with a bug now and then."
+        />
+      </p>
+      <a href={asset('')} class="btn btn-solid mt-9">
+        <span>←</span> <T es="Volver al inicio" en="Back to home" />
+      </a>
+      <p class="mt-10 font-mono text-[11px] text-dim">Carlos Daniel Doncel · Ingeniero Multimedia</p>
+    </div>
+  </main>
+</Layout>

@@ -16,6 +16,7 @@ export function initStage() {
   const hint = document.getElementById('sceneHint');
   const fileLabel = document.getElementById('sceneFile');
 
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let engaged = false, hover = false, visible = true, cur = -1, last = 0;
   const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'es') as 'es' | 'en';
 
@@ -24,6 +25,7 @@ export function initStage() {
     if (engaged) return;
     engaged = true;
     document.dispatchEvent(new CustomEvent('stage-engage'));
+    if (reduce && visible) scenes[cur]?.start(true);
     scenes[cur]?.onEngage?.();
   }
   const ctx: Ctx = { lang, engaged: () => engaged, engage };
@@ -37,6 +39,11 @@ export function initStage() {
     createWeb(roots[5], ctx),
   ];
 
+  // reduced motion: draw one still frame, only animate while the person is actually interacting
+  function still(i: number) {
+    scenes[i].start(false);
+    setTimeout(() => { if (!engaged) scenes[i].stop(); }, 160);
+  }
   function updateHint() {
     if (hint && cur >= 0) hint.textContent = dots[cur].dataset[lang() === 'en' ? 'hintEn' : 'hintEs'] ?? '';
   }
@@ -48,7 +55,7 @@ export function initStage() {
     dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
     if (fileLabel) fileLabel.textContent = FILES[i];
     updateHint();
-    if (visible) scenes[i].start(engaged);
+    if (visible) reduce ? still(i) : scenes[i].start(engaged);
   }
 
   stage.addEventListener('pointerdown', engage, true);
@@ -68,6 +75,7 @@ export function initStage() {
   setInterval(() => {
     if (engaged && performance.now() - last > 6000 && !stage.contains(document.activeElement)) {
       engaged = false;
+      if (reduce) scenes[cur]?.stop();
       document.dispatchEvent(new CustomEvent('stage-release'));
     }
   }, 500);
@@ -76,7 +84,8 @@ export function initStage() {
   new IntersectionObserver((es) => {
     visible = es[0].isIntersecting;
     if (cur < 0) return;
-    visible ? scenes[cur].start(engaged) : scenes[cur].stop();
+    if (visible) reduce && !engaged ? still(cur) : scenes[cur].start(engaged);
+    else scenes[cur].stop();
   }, { threshold: 0.05 }).observe(stage);
 
   document.addEventListener('scene', (e) => show((e as CustomEvent<number>).detail));
